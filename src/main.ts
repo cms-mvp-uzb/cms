@@ -16,14 +16,12 @@ Vue.use(VueRouter)
 Vue.use(Vuex)
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (context?: unknown) => {
-  return createApp(context).then(({ container, store, router }) => {
-    return new Vue({
-      router,
-      container,
-      store,
-      render: h => h(App)
-    })
-  })
-}
 
+createApp().then(({ container, store, router }) => {
+  new Vue({
+    router,
+    container,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+})
