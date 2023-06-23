@@ -1,23 +1,23 @@
 <template>
   <div class="PageBuilder">
-    <BlockShelf :itemsRegistry="blockCollection" :containersRegistry="containersCollection" />
+    <BlockShelf :containersRegistry="containersCollection" :itemsRegistry="blockCollection"/>
 
     <div class="PageBuilder__workspace__area">
       <Constructor v-show="activeMode === mode.Edit"
                    :blocks.sync="blocks"
-                   :containers.sync="containers" />
+                   :containers.sync="containers"/>
 
       <Renderer v-show="activeMode === mode.View"
                 :blocks.sync="blocks"
-                :containers.sync="containers" />
+                :containers.sync="containers"/>
     </div>
 
-    <BlockEditor :block="selectedBlock" />
+    <BlockEditor :block="selectedBlock"/>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import {Component, Prop, Vue, Watch} from 'vue-property-decorator'
 
 import {
   availableContainers,
@@ -26,32 +26,32 @@ import {
   PossibleElements
 } from '@/constructor/src/builder/defaults'
 import {
-  Constructor,
-  IBlock,
-  Renderer,
   BlockEditor,
   BlockShelf,
-  BlockShelfItemsRegistry
+  BlockShelfItemsRegistry,
+  Constructor,
+  IBlock,
+  Renderer
 } from '@/constructor/src/builder/modules'
-import { PageBuilderMode } from '@/constructor/src/builder/contracts'
+import {PageBuilderMode} from '@/constructor/src/builder/contracts'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
 @Component<PageBuilder>({
   name: 'PageBuilder',
-  components: { Renderer, Constructor, BlockEditor, BlockShelf },
-  created (): void {
+  components: {Renderer, Constructor, BlockEditor, BlockShelf},
+  created(): void {
     this.setDefaultSelection()
     this.buildBlocks()
     this.buildContainers()
   }
 })
 export class PageBuilder extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({type: Array, required: true})
   public blockSet!: IBlock[]
 
-  @Prop({ type: Array, required: true })
+  @Prop({type: Array, required: true})
   public containerSet!: IBlock[]
 
   public blocks: IBlock[] = []
@@ -64,7 +64,7 @@ export class PageBuilder extends Vue {
   /**
    * Determines combined "outer" and "inner" blocks.
    */
-  public get allBlocks (): IBlock[] {
+  public get allBlocks(): IBlock[] {
     return [
       ...this.containers,
       ...this.blocks
@@ -74,13 +74,13 @@ export class PageBuilder extends Vue {
   /**
    * Collection of default and custom blocks to be passed to shelf.
    */
-  public get blockCollection (): BlockShelfItemsRegistry<PossibleElements> {
+  public get blockCollection(): BlockShelfItemsRegistry<PossibleElements> {
     return {
       ...availableElements
     }
   }
 
-  public get containersCollection (): BlockShelfItemsRegistry<PossibleContainer> {
+  public get containersCollection(): BlockShelfItemsRegistry<PossibleContainer> {
     return {
       ...availableContainers
     }
@@ -89,14 +89,14 @@ export class PageBuilder extends Vue {
   /**
    * Determines if there selected block in blocks.
    */
-  public get hasSelectedBlock (): boolean {
+  public get hasSelectedBlock(): boolean {
     return this.allBlocks.some((block: IBlock) => block.selected)
   }
 
   /**
    * Determines selected block.
    */
-  public get selectedBlock (): IBlock | undefined {
+  public get selectedBlock(): IBlock | undefined {
     if (!this.hasSelectedBlock) {
       return
     }
@@ -105,35 +105,17 @@ export class PageBuilder extends Vue {
   }
 
   /**
-   * Builds and sorts "inner" blocks
-   */
-  private buildBlocks (): void {
-    this.blocks = this.blockSet.sort((a, b) => {
-      return a.order - b.order
-    })
-  }
-
-  /**
-   * Builds and sorts "outer" blocks
-   */
-  private buildContainers (): void {
-    this.containers = this.containerSet.sort((a, b) => {
-      return a.order - b.order
-    })
-  }
-
-  /**
    * Handles onSave event of Constructor.
    */
-  public handleOnSave (): void {
-    this.$emit('onSave', { elements: this.blocks, containers: this.containers })
+  public handleOnSave(): void {
+    this.$emit('onSave', {elements: this.blocks, containers: this.containers})
   }
 
   /**
    * Sets all selected option as false for all existing containers/blocks.
    */
-  public setDefaultSelection (): void {
-    this.blocks = this.blockSet.map(block =>({
+  public setDefaultSelection(): void {
+    this.blocks = this.blockSet.map(block => ({
       ...block,
       selected: false
     }))
@@ -142,18 +124,37 @@ export class PageBuilder extends Vue {
       ...container,
       selected: false
     }))
- }
+  }
 
   @Watch('blockSet')
-  protected onBlocks (): void {
+  protected onBlocks(): void {
     this.buildBlocks()
   }
 
-  @Watch('containerSet')
-  protected onContainers (): void {
+  @Watch('containersSet')
+  protected onContainers(): void {
     this.buildContainers()
   }
+
+  /**
+   * Builds and sorts "inner" blocks
+   */
+  private buildBlocks(): void {
+    this.blocks = this.blockSet.sort((a, b) => {
+      return a.order - b.order
+    })
+  }
+
+  /**
+   * Builds and sorts "outer" blocks
+   */
+  private buildContainers(): void {
+    this.containers = this.containerSet.sort((a, b) => {
+      return a.order - b.order
+    })
+  }
 }
+
 export default PageBuilder
 </script>
 
