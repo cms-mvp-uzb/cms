@@ -1,23 +1,30 @@
 <template>
   <div class="PageBuilder">
-    <BlockShelf :containersRegistry="containersCollection" :itemsRegistry="blockCollection"/>
+    <div class="PageBuilder__workspace">
+      <BlockShelf :containersRegistry="containersCollection" :itemsRegistry="blockCollection"/>
+      <div class="PageBuilder__workspace__right__container">
+        <PageBuilderActionBar />
 
-    <div class="PageBuilder__workspace__area">
-      <Constructor v-show="activeMode === mode.Edit"
-                   :blocks.sync="blocks"
-                   :containers.sync="containers"/>
+        <div class="PageBuilder__workspace__right__content">
+          <div class="PageBuilder__workspace__area">
+            <Constructor v-show="activeMode === mode.Edit"
+                         :blocks.sync="blocks"
+                         :containers.sync="containers"/>
 
-      <Renderer v-show="activeMode === mode.View"
-                :blocks.sync="blocks"
-                :containers.sync="containers"/>
+            <Renderer v-show="activeMode === mode.View"
+                      :blocks.sync="blocks"
+                      :containers.sync="containers"/>
+          </div>
+
+          <BlockEditor :block="selectedBlock"/>
+        </div>
+      </div>
     </div>
-
-    <BlockEditor :block="selectedBlock"/>
   </div>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue, Watch} from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 
 import {
   availableContainers,
@@ -33,14 +40,16 @@ import {
   IBlock,
   Renderer
 } from '@/constructor/src/builder/modules'
-import {PageBuilderMode} from '@/constructor/src/builder/contracts'
+import { PageBuilderMode } from '@/constructor/src/builder/contracts'
+
+import { PageBuilderActionBar } from '../PageBuilderActionBar'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
 @Component<PageBuilder>({
   name: 'PageBuilder',
-  components: {Renderer, Constructor, BlockEditor, BlockShelf},
+  components: { Renderer, Constructor, BlockEditor, BlockShelf, PageBuilderActionBar },
   created(): void {
     this.setDefaultSelection()
     this.buildBlocks()
@@ -158,23 +167,3 @@ export class PageBuilder extends Vue {
 export default PageBuilder
 </script>
 
-<style lang="scss">
-.PageBuilder {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: space-between;
-
-  height: 100%;
-
-  &__workspace {
-    &__area {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
-</style>

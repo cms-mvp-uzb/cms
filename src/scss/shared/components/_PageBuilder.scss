@@ -1,0 +1,56 @@
+$action-bar-height: 50px;
+
+.PageBuilder {
+
+  .BlockEditor {
+    height: calc(100vh - #{$action-bar-height});
+    box-shadow: 0 20px 20px 10px #f5f5f5;
+  }
+
+  .Shelf {
+    padding: $action-bar-height 20px 0 20px;
+    border-right: 1px solid #F3F4F5;
+  }
+
+  &__actionBar {
+    width: 100%;
+    height: $action-bar-height;
+    background-color: #fff;
+
+    border-bottom: 1px solid #F3F4F5;
+  }
+
+  &__workspace {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 100vh;
+    width: 100%;
+
+    > div {
+      display: flex;
+    }
+
+    &__area {
+      height: calc(100vh - #{$action-bar-height});
+      width: 100%;
+
+      background-color: #F3F4F5;
+    }
+
+    &__right {
+      &__container {
+        display: flex;
+        flex-flow: column;
+
+        width: 100%;
+      }
+
+      &__content {
+        display: flex;
+      }
+    }
+  }
+}
