@@ -28,11 +28,6 @@ $action-bar-height: 50px;
 
     height: 100vh;
     width: 100%;
-
-    > div {
-      display: flex;
-    }
-
     &__area {
       height: calc(100vh - #{$action-bar-height});
       width: 100%;
