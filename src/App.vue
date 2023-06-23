@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h2>Test with Toolkit and Page Builder</h2>
+  <div id="app">
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+/**
+ * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
+ */
 @Component<App>({ name: 'App' })
 export class App extends Vue {}
 export default App

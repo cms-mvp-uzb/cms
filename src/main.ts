@@ -8,6 +8,7 @@ import { Toolkit } from '@/toolkit/src/core/plugin';
 import { createApp } from '@/config/app';
 
 import App from './App.vue';
+import './scss/index.scss'
 
 Vue.config.productionTip = false;
 
