@@ -144,12 +144,12 @@ export class PageBuilder extends Vue {
     }))
  }
 
-  @Watch('blocks')
+  @Watch('blockSet')
   protected onBlocks (): void {
     this.buildBlocks()
   }
 
-  @Watch('containers')
+  @Watch('containerSet')
   protected onContainers (): void {
     this.buildContainers()
   }
