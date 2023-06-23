@@ -1,5 +1,5 @@
-import { RouteConfig } from 'vue-router'
-import { defineAsyncComponent } from 'vue'
+import {RouteConfig} from 'vue-router'
+import {defineAsyncComponent} from 'vue'
 
 /**
  * @author Javlon Khalimjonov <khalimjanov2000@gmail.com>
@@ -13,7 +13,7 @@ export const enum RouteName {
  */
 export const routes: Array<RouteConfig> = [
   {
-    path: '/editor/?:id',
+    path: '/editor',
     name: RouteName.Editor,
     component: defineAsyncComponent(() => import('../views/EditorView.vue' as unknown as string))
   }
