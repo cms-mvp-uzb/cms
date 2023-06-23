@@ -2,13 +2,15 @@
   <div class="PageBuilder">
     <BlockShelf :itemsRegistry="blockCollection" :containersRegistry="containersCollection" />
 
-    <Constructor v-show="activeMode === mode.Edit"
-                 :blocks.sync="blocks"
-                 :containers.sync="containers" />
+    <div class="PageBuilder__workspace__area">
+      <Constructor v-show="activeMode === mode.Edit"
+                   :blocks.sync="blocks"
+                   :containers.sync="containers" />
 
-    <Renderer v-show="activeMode === mode.View"
-              :blocks.sync="blocks"
-              :containers.sync="containers" />
+      <Renderer v-show="activeMode === mode.View"
+                :blocks.sync="blocks"
+                :containers.sync="containers" />
+    </div>
 
     <BlockEditor :block="selectedBlock" />
   </div>
@@ -154,3 +156,21 @@ export class PageBuilder extends Vue {
 }
 export default PageBuilder
 </script>
+
+<style lang="scss">
+.PageBuilder {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100%;
+
+  &__workspace {
+    &__area {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+</style>
