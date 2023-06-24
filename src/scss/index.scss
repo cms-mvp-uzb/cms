@@ -1,7 +1,16 @@
 @import "@/constructor/src/builder/scss/index.scss";
 
+// Import variables first, so the other imports will have access to them without importing.
+@import "variables";
+@import "fonts";
+@import "functions";
+
+@import '../dsl/scss';
+
+@import "./grid";
 @import "./shared";
 
-* {
-  box-sizing: border-box;
+/* Apply the font to an element */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
 }

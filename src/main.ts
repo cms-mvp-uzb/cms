@@ -7,12 +7,15 @@ import Vuex from 'vuex';
 import { Toolkit } from '@/toolkit/src/core/plugin';
 import { createApp } from '@/config/app';
 
+import { DashboardDSL } from '@/dsl'
+
 import App from './App.vue';
 import './scss/index.scss'
 
 Vue.config.productionTip = false;
 
 Vue.use(Toolkit)
+Vue.use(DashboardDSL, { prefix: 'D' })
 Vue.use(VueRouter)
 Vue.use(Vuex)
 

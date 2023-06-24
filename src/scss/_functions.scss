@@ -1,0 +1,7 @@
+@function rem($pxValue) {
+  @return #{$pxValue / $font-size-base}rem;
+}
+
+@function em($pxValue, $context) {
+  @return #{$pxValue / $context}em;
+}

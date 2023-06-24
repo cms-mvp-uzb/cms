@@ -1,0 +1,51 @@
+// Grid container
+.container {
+  width: 100%;
+  max-width: $breakpoint-xl;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $padding-base;
+  padding-left: $padding-base;
+
+  // Responsive breakpoints
+  @media (min-width: $breakpoint-sm) {
+    max-width: $breakpoint-sm;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-width: $breakpoint-md;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: $breakpoint-lg;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    max-width: $breakpoint-xl;
+  }
+}
+
+// Grid columns
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    padding-right: $grid-gutter-width / 2;
+    padding-left: $grid-gutter-width / 2;
+
+    // Responsive breakpoints
+    @media (min-width: $breakpoint-sm) {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: (100% / $grid-columns) * $i;
+    }
+  }
+}
+
+// Clearfix for row
+.row::after {
+  content: '';
+  display: table;
+  clear: both;
+}

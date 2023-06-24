@@ -1,6 +1,8 @@
 <template>
   <div class="PageBuilder__actionBar">
-
+    <DButton>
+      Publish
+    </DButton>
   </div>
 </template>
 

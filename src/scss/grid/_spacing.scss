@@ -1,0 +1,45 @@
+// Margin utility classes
+@for $i from 0 through 5 {
+  .m-#{$i} {
+    margin: $spacing-unit * $i !important;
+  }
+
+  .mt-#{$i} {
+    margin-top: $spacing-unit * $i !important;
+  }
+
+  .mr-#{$i} {
+    margin-right: $spacing-unit * $i !important;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $spacing-unit * $i !important;
+  }
+
+  .ml-#{$i} {
+    margin-left: $spacing-unit * $i !important;
+  }
+}
+
+// Padding utility classes
+@for $i from 0 through 5 {
+  .p-#{$i} {
+    padding: $spacing-unit * $i !important;
+  }
+
+  .pt-#{$i} {
+    padding-top: $spacing-unit * $i !important;
+  }
+
+  .pr-#{$i} {
+    padding-right: $spacing-unit * $i !important;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: $spacing-unit * $i !important;
+  }
+
+  .pl-#{$i} {
+    padding-left: $spacing-unit * $i !important;
+  }
+}
