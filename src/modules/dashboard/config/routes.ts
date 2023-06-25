@@ -15,7 +15,7 @@ export const enum RouteName {
  */
 export const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: '/', // Let's consider Dashboard view as a root.
     name: RouteName.Dashboard,
     component: defineAsyncComponent(() => import('../views/DashboardView.vue' as unknown as string)),
     meta: { template: AllowedTemplates.Sidebar }

@@ -1,7 +1,7 @@
 <template>
   <SidebarTemplate v-if="isSidebarLayout">
     <template #sidebar>
-      There will be sidebar menu component.
+      <Sidebar />
     </template>
 
     <template #content>
@@ -17,11 +17,12 @@ import { Component, Vue } from 'vue-property-decorator'
 
 import { AllowedTemplates } from '@/shared/contracts/templates'
 import { SidebarTemplate } from '@/shared/templates'
+import { Sidebar } from '@/shared/components/Sidebar'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
-@Component({ name: 'WithLayout', components: { SidebarTemplate } })
+@Component({ name: 'WithLayout', components: { SidebarTemplate, Sidebar } })
 export class WithLayout extends Vue {
   /**
    * Determines the layout based on the meta parameters passed.
