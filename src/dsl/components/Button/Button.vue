@@ -7,16 +7,19 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+import { Theme, Themes } from '../../contracts'
+import { resolveTheme } from '../../helpers/theme-resolver'
+
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
 @Component({ name: 'Button' })
 export class Button extends Vue {
-  @Prop({ type: String, required: false })
-  public readonly theme!: string
+  @Prop({ type: String, required: false, default: Themes.Primary })
+  public readonly theme!: Theme
 
   public get resolvedThemeClass (): string {
-    return 'btn-primary'
+    return resolveTheme(this.theme)
   }
 }
 

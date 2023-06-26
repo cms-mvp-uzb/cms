@@ -21,7 +21,7 @@
   border-radius: $border-radius;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  &.btn-primary {
+  &.--primary {
     color: #fff;
     background-color: $primary-color;
     border-color: $primary-color;
@@ -34,7 +34,7 @@
     }
   }
 
-  &.btn-secondary {
+  &.--secondary {
     color: #fff;
     background-color: $secondary-color;
     border-color: $secondary-color;
@@ -47,7 +47,7 @@
     }
   }
 
-  &.btn-success {
+  &.--success {
     color: #fff;
     background-color: $success-color;
     border-color: $success-color;
@@ -60,7 +60,7 @@
     }
   }
 
-  &.btn-warning {
+  &.--warning {
     color: #212529;
     background-color: $warning-color;
     border-color: $warning-color;
@@ -73,7 +73,7 @@
     }
   }
 
-  &.btn-danger {
+  &.--danger {
     color: #fff;
     background-color: $error-color;
     border-color: $error-color;

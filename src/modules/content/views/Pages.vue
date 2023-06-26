@@ -1,6 +1,7 @@
 <template>
   <div>
     There will be tree of available pages to edit in editor.
+    <DSwitch :model.sync="checked" />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({ name: 'Pages' })
 export class Pages extends Vue {
 
+  public checked = false
 }
 export default Pages
 </script>

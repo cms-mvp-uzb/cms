@@ -1,0 +1,45 @@
+// Switch component styles
+.DSwitch {
+  position: relative;
+  display: inline-block;
+  width: $switch-width;
+  height: $switch-height;
+
+
+  &__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    display: block;
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: $switch-border-radius;
+    background-color: $switch-background-color;
+    transition: background-color 0.3s ease;
+  }
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: $switch-handle-color;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+}
+.DSwitch__input:checked + .DSwitch__label {
+  background-color: $switch-active-background-color;
+}
+
+.DSwitch__input:checked + .DSwitch__label .DSwitch__inner {
+  transform: translateX(100%);
+}
+
