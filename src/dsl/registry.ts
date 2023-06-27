@@ -1,4 +1,6 @@
 import { Button } from './components/Button'
+import { Icon } from './components/Icon'
+import { IconButton } from './components/IconButton'
 import { Switch } from './components/Switch'
 
 /**
@@ -6,5 +8,7 @@ import { Switch } from './components/Switch'
  */
 export const componentsRegistry = {
   Button,
+  Icon,
+  IconButton,
   Switch
 }

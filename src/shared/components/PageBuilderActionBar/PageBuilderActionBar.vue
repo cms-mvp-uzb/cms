@@ -1,6 +1,10 @@
 <template>
   <div class="PageBuilder__actionBar">
+    <DIconButton iconName="settings" />
     <DButton>
+      <template #prepend>
+        <DIcon name="publish" />
+      </template>
       Publish
     </DButton>
   </div>

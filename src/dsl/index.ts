@@ -1,5 +1,7 @@
 import { VueConstructor } from 'vue'
+
 import { componentsRegistry } from './registry'
+import { iconsRegistry } from './icons'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -9,5 +11,11 @@ export const DashboardDSL = {
     for (const [name, component] of Object.entries(componentsRegistry)) {
       _Vue.component(`${config.prefix}${name}`, component)
     }
+
+    _Vue.mixin({
+      provide: {
+        icons: iconsRegistry
+      }
+    })
   }
 }

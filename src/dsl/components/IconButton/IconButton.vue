@@ -1,7 +1,7 @@
 <template>
-  <button class="btn" :class="[resolvedThemeClass, withPrependClass]">
-    <slot name="prepend" class="btn-icon" />
-    <slot />
+  <button class="DIconButton" :class="[{ '--disabled': isDisabled },resolvedThemeClass]"
+          :disabled="isDisabled">
+    <DIcon :name="iconName" width="18" height="18" />
   </button>
 </template>
 
@@ -14,19 +14,21 @@ import { resolveTheme } from '../../helpers/theme-resolver'
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
-@Component({ name: 'Button' })
-export class Button extends Vue {
+@Component({ name: 'IconButton' })
+export class IconButton extends Vue {
   @Prop({ type: String, required: false, default: Themes.Primary })
   public readonly theme!: Theme
+
+  @Prop({ type: String, required: true })
+  public readonly iconName!: string
+
+  @Prop({ type: Boolean, required: false, default: false })
+  public readonly isDisabled!: boolean
 
   public get resolvedThemeClass (): string {
     return resolveTheme(this.theme)
   }
-
-  public get withPrependClass (): string {
-    return this.$slots.prepend ? '--prepended' : ''
-  }
 }
 
-export default Button
+export default IconButton
 </script>

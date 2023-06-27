@@ -15,9 +15,18 @@ $action-bar-height: 50px;
   &__actionBar {
     width: 100%;
     height: $action-bar-height;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 0 rem(24px);
+
     background-color: #fff;
 
     border-bottom: 1px solid #F3F4F5;
+
+    gap: rem(12px);
   }
 
   &__workspace {

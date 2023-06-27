@@ -1,0 +1,48 @@
+.DIconButton {
+  display: flex;
+  align-items: center;
+
+  font-weight: 400;
+  font-size: rem(14px);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  user-select: none;
+  border: 1px solid transparent;
+
+  padding: 0.45rem 0.75rem;
+
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  letter-spacing: .6px;
+
+  border-radius: $border-radius;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &.--primary {
+    background-color: lighten($primary-color, 33%);
+    color: $primary-color;
+
+    &:hover {
+      background-color: lighten($primary-color, 28%);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: $box-shadow;
+    }
+
+    &:active {
+      background-color: darken($primary-color, 10%);
+      color: $white;
+    }
+  }
+
+  &.--disabled, &:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+}
