@@ -1,0 +1,10 @@
+.Sidebar {
+  display: flex;
+  flex-flow: column;
+
+  height: 100%;
+
+  padding: rem(12px) rem(24px);
+
+  border-right: 1px solid $grey-100;
+}

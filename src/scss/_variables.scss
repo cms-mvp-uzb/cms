@@ -6,7 +6,12 @@ $warning-color: #ffc107;
 $error-color: #E54979;
 
 $white: #ffffff;
-$black: #000000;
+$black: #242424;
+$grey: #575a5f;
+
+$grey-100: lighten(#575a5f, 60%);
+$grey-200: lighten(#575a5f, 40%);
+$grey-300: lighten(#575a5f, 30%);
 
 // Typography
 $font-family: Arial, sans-serif;

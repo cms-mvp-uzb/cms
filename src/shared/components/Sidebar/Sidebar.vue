@@ -1,12 +1,6 @@
 <template>
   <div class="Sidebar">
-    <ul>
-      <li v-for="item in items" :key="item.key">
-        <router-link :to="{ name: item.route }">
-          {{ item.label }}
-        </router-link>
-      </li>
-    </ul>
+    <Menu :menuItems="items" />
   </div>
 </template>
 
@@ -17,10 +11,17 @@ import { menu } from '@/config/menu'
 
 import { MenuItem } from '@/shared/contracts/menu'
 
+import { Menu } from '../../components/Menu'
+
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
-@Component({ name: 'Sidebar' })
+@Component({
+  name: 'Sidebar',
+  components: {
+    Menu
+  }
+})
 export class Sidebar extends Vue {
   public get items(): MenuItem[] {
     return menu.map((item) => {
