@@ -1,4 +1,4 @@
-$action-bar-height: 50px;
+$action-bar-height: 80px;
 
 .PageBuilder {
 
@@ -8,8 +8,25 @@ $action-bar-height: 50px;
   }
 
   .Shelf {
-    padding: $action-bar-height 20px 0 20px;
-    border-right: 1px solid #F3F4F5;
+    padding: 0 20px 0 20px;
+    border-right: 1px solid #F3F4F5;;
+
+    &__logo {
+      margin: 0 0 20px;
+      height: $action-bar-height;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      color: $primary-color;
+      border-bottom: 1px solid #F3F4F5;;
+    }
+
+    &__elements {
+      &-heading {
+        font-size: 20px;
+        font-weight: 400;
+      }
+    }
   }
 
   &__actionBar {
@@ -37,6 +54,7 @@ $action-bar-height: 50px;
 
     height: 100vh;
     width: 100%;
+
     &__area {
       height: calc(100vh - #{$action-bar-height});
       width: 100%;
