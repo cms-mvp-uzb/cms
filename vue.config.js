@@ -1,18 +1,11 @@
 // const path = require('path');
 
 module.exports = {
+  parallel: 4,
   runtimeCompiler: true,
-  // css: {
-  //   loaderOptions: {
-  //     sass: {
-  //       sassOptions: {
-  //         includePaths: [
-  //           path.resolve(__dirname, './src/constructor/src/builder/scss/index.scss')
-  //         ],
-  //         indentedSyntax: true,
-  //       },
-  //       additionalData: `@import "/src/scss/index.scss"`
-  //     },
-  //   },
-  // },
+  configureWebpack: {
+    optimization: {
+      usedExports: true
+    },
+  },
 }
