@@ -1,5 +1,9 @@
+@function stripUnit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
 @function rem($pxValue) {
-  @return #{$pxValue / $font-size-base}rem;
+  @return #{stripUnit($pxValue) / stripUnit($font-size-base)}rem;
 }
 
 @function em($pxValue, $context) {

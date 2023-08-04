@@ -1,0 +1,46 @@
+.DTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  border: 1px solid $border-color;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  border-bottom: none;
+
+  .selectable {
+    width: 10px;
+    height: auto;
+    padding-left: rem(10px);
+    padding-right: rem(0px);
+
+    padding-top: rem(15px);
+  }
+
+  th,
+  td {
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+    font-size: rem(12px);
+  }
+
+  th {
+    padding: rem(12px);
+  }
+
+  td {
+    padding: rem(14px) rem(12px);
+  }
+
+  thead {
+    border: 1px solid red;
+  }
+
+  tbody {
+    border: 1px solid $border-color;
+  }
+
+  tbody tr:hover {
+    background-color: #f2f2f2;
+  }
+}

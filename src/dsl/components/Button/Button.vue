@@ -1,5 +1,6 @@
 <template>
-  <button class="btn" :class="[resolvedThemeClass, withPrependClass]">
+  <button class="btn" v-bind="{ type }" :class="[resolvedThemeClass, withPrependClass]"
+          @click="onClick">
     <slot name="prepend" class="btn-icon" />
     <slot />
   </button>
@@ -16,6 +17,9 @@ import { resolveTheme } from '../../helpers/theme-resolver'
  */
 @Component({ name: 'Button' })
 export class Button extends Vue {
+  @Prop({ type: String, required: false, default: 'button' })
+  public readonly type!: string
+
   @Prop({ type: String, required: false, default: Themes.Primary })
   public readonly theme!: Theme
 
@@ -25,6 +29,10 @@ export class Button extends Vue {
 
   public get withPrependClass (): string {
     return this.$slots.prepend ? '--prepended' : ''
+  }
+
+  public onClick (): void {
+    this.$emit('click')
   }
 }
 

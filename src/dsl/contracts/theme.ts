@@ -16,7 +16,8 @@ export enum Themes {
   Secondary = 'secondary',
   Danger = 'danger',
   Info = 'info',
-  Warning = 'warning'
+  Warning = 'warning',
+  Outline = 'outline'
 }
 
 /**
@@ -24,7 +25,8 @@ export enum Themes {
  */
 export const defaultThemeRegistry: ThemeRegistry = {
   [Themes.Primary]: '--primary',
-  [Themes.Danger]: '--danger'
+  [Themes.Danger]: '--danger',
+  [Themes.Outline]: '--outline'
 }
 
 /**

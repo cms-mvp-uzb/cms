@@ -11,6 +11,12 @@
 @import "./shared";
 @import "./templates";
 
+@import "./modules";
+
+* {
+  box-sizing: border-box;
+}
+
 /* Apply the font to an element */
 body {
   font-family: 'Poppins', Arial, sans-serif;

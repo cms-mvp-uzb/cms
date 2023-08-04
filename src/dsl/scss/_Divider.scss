@@ -1,0 +1,34 @@
+.Divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  text-wrap: nowrap;
+
+  gap: rem(10px);
+
+  font-size: rem(14px);
+
+  &::before,
+  &::after {
+    content: '';
+
+    background-color: #dadada;
+
+    height: rem(1px);
+    width: 100%;
+
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}

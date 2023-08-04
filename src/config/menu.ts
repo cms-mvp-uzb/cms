@@ -16,4 +16,32 @@ export const menu = [
     route: 'content.pages',
     children: []
   },
+  {
+    label: 'Analytics',
+    key: 'analytics',
+    icon: 'analytics',
+    route: 'analytics.analytics',
+    children: []
+  },
+  {
+    label: 'E-Commerce',
+    key: 'products',
+    icon: 'products',
+    route: 'products.products',
+    children: []
+  },
+  {
+    label: 'Integrations',
+    key: 'integrations',
+    icon: 'cube3D',
+    route: 'integrations.integrations',
+    children: []
+  },
+  {
+    label: 'Settings',
+    key: 'settings',
+    icon: 'settings',
+    route: 'settings.settings',
+    children: []
+  },
 ]

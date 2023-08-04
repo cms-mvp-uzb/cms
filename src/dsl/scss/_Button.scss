@@ -1,6 +1,7 @@
 .btn {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   font-weight: 400;
   font-size: rem(14px);
@@ -88,6 +89,17 @@
       color: #fff;
       background-color: darken($error-color, 10%);
       border-color: darken($error-color, 10%);
+    }
+  }
+
+  &.--outline {
+    color: #212529;
+    background-color: transparent;
+    border-color: darken($secondary-color, 10%);
+
+    &:hover,
+    &:focus {
+      background-color: #f6f6f6;
     }
   }
 }

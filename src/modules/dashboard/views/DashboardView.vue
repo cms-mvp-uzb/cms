@@ -1,6 +1,6 @@
 <template>
   <div>
-     <button @click="goToEditor">Go To Editor</button>
+     <DButton @click="goToEditor">Go To Editor</DButton>
   </div>
 </template>
 
@@ -14,7 +14,6 @@ import { Component, Vue } from 'vue-property-decorator'
   name: 'DashboardView',
 })
 export class DashboardView extends Vue {
-
   public goToEditor (): void {
     this.$router.push({ name: 'content.editor' })
   }
