@@ -1,9 +1,18 @@
 <template>
-  <div class="PageBuilder">
+  <div class="PageBuilder" :class="{ '--open': visible }">
     <div class="PageBuilder__workspace">
-      <BlockShelf :containersRegistry="containersCollection" :itemsRegistry="blockCollection"/>
+      <BlockShelf
+        :containersRegistry="containersCollection"
+        :itemsRegistry="blockCollection"
+        @visible="toggleVisibility"
+      />
+
       <div class="PageBuilder__workspace__right__container">
-        <PageBuilderActionBar />
+        <PageBuilderActionBar
+          @changeMode="handleChangeMode"
+          @save="handleOnSave"
+          @preview="handlePreview"
+        />
 
         <div class="PageBuilder__workspace__right__content">
           <div class="PageBuilder__workspace__area">
@@ -24,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import {Component, Prop, Vue, Watch} from 'vue-property-decorator'
 
 import {
   availableContainers,
@@ -50,21 +59,22 @@ import { PageBuilderActionBar } from '../PageBuilderActionBar'
 @Component<PageBuilder>({
   name: 'PageBuilder',
   components: { Renderer, Constructor, BlockEditor, BlockShelf, PageBuilderActionBar },
-  created(): void {
-    this.setDefaultSelection()
-    this.buildBlocks()
+  mounted(): void {
     this.buildContainers()
+    this.buildBlocks()
+    this.setDefaultSelection()
   }
 })
 export class PageBuilder extends Vue {
-  @Prop({type: Array, required: true})
+  @Prop({ type: Array, required: true })
   public blockSet!: IBlock[]
 
-  @Prop({type: Array, required: true})
+  @Prop({ type: Array, required: true })
   public containerSet!: IBlock[]
 
   public blocks: IBlock[] = []
   public containers: IBlock[] = []
+  public visible = true
 
   public readonly mode = PageBuilderMode
 
@@ -110,26 +120,45 @@ export class PageBuilder extends Vue {
       return
     }
 
-    return this.allBlocks.filter((block: IBlock) => block.selected)[0]
+    return this.allBlocks.find((block: IBlock) => block.selected)
+  }
+
+  public toggleVisibility (): void {
+    this.visible = !this.visible
+  }
+
+  public handleChangeMode(): void {
+    if (this.activeMode === PageBuilderMode.Edit) {
+      this.activeMode = PageBuilderMode.View
+    } else {
+      this.activeMode = PageBuilderMode.Edit
+    }
   }
 
   /**
    * Handles onSave event of Constructor.
    */
   public handleOnSave(): void {
-    this.$emit('onSave', {elements: this.blocks, containers: this.containers})
+    this.$emit('save', {
+      elements: this.blocks,
+      containers: this.containers
+    })
+  }
+
+  public handlePreview (): void {
+    this.$emit('preview')
   }
 
   /**
    * Sets all selected option as false for all existing containers/blocks.
    */
   public setDefaultSelection(): void {
-    this.blocks = this.blockSet.map(block => ({
+    this.blocks = [...this.blocks ].map(block => ({
       ...block,
       selected: false
     }))
 
-    this.containers = this.containerSet.map(container => ({
+    this.containers = [ ...this.containers ].map(container => ({
       ...container,
       selected: false
     }))
@@ -149,7 +178,7 @@ export class PageBuilder extends Vue {
    * Builds and sorts "inner" blocks
    */
   private buildBlocks(): void {
-    this.blocks = this.blockSet.sort((a, b) => {
+    this.blocks = [...this.blockSet].slice().sort((a, b) => {
       return a.order - b.order
     })
   }
@@ -158,7 +187,7 @@ export class PageBuilder extends Vue {
    * Builds and sorts "outer" blocks
    */
   private buildContainers(): void {
-    this.containers = this.containerSet.sort((a, b) => {
+    this.containers = [...this.containerSet].slice().sort((a, b) => {
       return a.order - b.order
     })
   }

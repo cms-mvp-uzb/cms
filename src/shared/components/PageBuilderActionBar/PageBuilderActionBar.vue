@@ -1,11 +1,17 @@
 <template>
   <div class="PageBuilder__actionBar">
+    <div>
+      <DIconButton iconName="eye" @click="changeMode" />
+    </div>
+
     <DIconButton iconName="settings" />
-    <DButton>
-      <template #prepend>
-        <DIcon name="publish" />
-      </template>
-      Publish
+
+    <DButton @click="onPreview">
+      Preview
+    </DButton>
+
+    <DButton @click="onSave">
+      Save
     </DButton>
   </div>
 </template>
@@ -18,7 +24,17 @@ import { Component, Vue } from 'vue-property-decorator'
  */
 @Component({ name: 'PageBuilderActionBar' })
 export class PageBuilderActionBar extends Vue {
+  public changeMode (): void {
+    this.$emit('changeMode')
+  }
 
+  public onSave(): void {
+    this.$emit('save')
+  }
+
+  public onPreview(): void {
+    this.$emit('preview')
+  }
 }
 export default PageBuilderActionBar
 </script>

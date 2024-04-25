@@ -1,6 +1,6 @@
 <template>
   <button class="DIconButton" :class="[{ '--disabled': isDisabled },resolvedThemeClass]"
-          :disabled="isDisabled">
+          :disabled="isDisabled" @click="handleClick">
     <DIcon :name="iconName" width="18" height="18" />
   </button>
 </template>
@@ -27,6 +27,10 @@ export class IconButton extends Vue {
 
   public get resolvedThemeClass (): string {
     return resolveTheme(this.theme)
+  }
+
+  public handleClick (): void {
+    this.$emit('click')
   }
 }
 

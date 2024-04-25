@@ -2,6 +2,7 @@
   <div id="app">
     <AuthView v-if="!isAuthenticated" />
     <WithLayout v-else />
+    <Modal />
   </div>
 </template>
 
@@ -16,13 +17,14 @@ import {
 
 import { AuthView } from './modules/auth/views/AuthView.vue'
 import { WithLayout } from './modules/root/views/WithLayout.vue'
+import { Modal } from './shared/components/Modal'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
 @Component<App>({
   name: 'App',
-  components: { WithLayout, AuthView },
+  components: { Modal, WithLayout, AuthView },
   created (): void {
     this.createAuthSubscription()
   }

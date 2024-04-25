@@ -10,4 +10,6 @@ export enum Icon {
   Products = 'products',
   Publish = 'publish',
   Settings = 'settings',
+  Eye = 'eye',
+  PlusCircle = 'plusCircle',
 }

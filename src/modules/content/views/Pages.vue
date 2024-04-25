@@ -1,8 +1,21 @@
 <template>
-  <div style="padding: 50px">
-    <DTable :headers="tableHeaders" :items="tableItems" @cell-clicked="onCellClicked" selectable>
+  <div class="Pages">
+    <div class="Pages__actions">
+      <DButton type="secondary" @click="openCreatePageModal">
+        <template #prepend>
+          <DIcon name="plusCircle" />
+        </template>
+        Create
+      </DButton>
+    </div>
+
+    <DTable :headers="tableHeaders" :items="tableItems" @cell-clicked="onCellClicked">
       <template v-slot:cell-name="{ item }">
         <strong>{{ item.name }}</strong>
+      </template>
+
+      <template v-slot:cell-id="{ item }">
+        <small>{{ item.id }}</small>
       </template>
     </DTable>
   </div>
@@ -10,22 +23,73 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { getFirestore, collection, getDocs, query } from 'firebase/firestore'
 
 import { TableItem } from '@/dsl/components/Table'
+import {Modal, RouteName} from "@/modules/content/config"
+import { ModalServiceType } from "@/toolkit/src/core/services/modal";
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
-@Component({ name: 'Pages' })
+@Component<Pages>({
+  name: 'Pages',
+  mounted(): void {
+    this.fetchPages()
+  }
+})
 export class Pages extends Vue {
-  public tableHeaders: string[] = ['Name', 'Age']
-  public tableItems: TableItem[] = [
-    { name: 'John', age: 30 },
-    { name: 'Jane', age: 25 }
-  ]
+  protected readonly modalService = this.$container.get(ModalServiceType)
+
+  public tableHeaders: string[] = ['Title', 'Identifier']
+  public tableItems: TableItem[] = []
+
+  public openCreatePageModal(): void {
+    this.modalService.show(
+      Modal.CreatePage,
+      {
+        onSuccess: (id: string) => {
+          this.$router.push({
+            name: `content.${RouteName.Editor}`,
+            params: {
+              id
+            }
+          })
+
+          this.modalService.close()
+        }
+      }
+    )
+  }
 
   public onCellClicked (payload: { item: TableItem; key: string }): void {
+    this.$router.push({
+      name: `content.${RouteName.Editor}`,
+      params: {
+        id: payload.item.id
+      }
+    })
+
     console.log('Cell clicked:', payload.item, payload.key)
+  }
+
+  public async fetchPages (): Promise<void> {
+    try {
+      const db = getFirestore()
+      const _query = query(collection(db, 'pages'))
+
+      const response = await getDocs(_query)
+
+      this.tableItems = response.docs.map((doc) => {
+        return {
+          name: doc.data().meta.name,
+          id: doc.id
+        }
+      })
+
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 

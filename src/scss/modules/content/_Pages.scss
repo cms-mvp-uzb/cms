@@ -1,0 +1,9 @@
+.Pages {
+  padding: 1rem;
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+}

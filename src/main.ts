@@ -12,6 +12,8 @@ import { DashboardDSL } from '@/dsl'
 import App from './App.vue';
 import './scss/index.scss'
 
+import './firebase.config'
+
 Vue.config.productionTip = false;
 
 Vue.use(Toolkit)

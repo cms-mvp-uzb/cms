@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
+    "target": "es2017",
+    "module": "none",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -21,10 +21,7 @@
       ],
     },
     "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
+      "DOM", "es2017", "DOM.Iterable", "ScriptHost", "ES2016.Array.Include"
     ]
   },
   "include": [

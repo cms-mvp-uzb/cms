@@ -1,22 +1,37 @@
 <template>
   <div>
-     <DButton @click="goToEditor">Go To Editor</DButton>
+    <div>
+      <Card v-for="(item, index) in count" :key="index" :title="item.title" :text="item.text" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from "vue-property-decorator";
+import { Card } from "@/components/Card.vue";
 
-/**
- * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
- */
 @Component<DashboardView>({
   name: 'DashboardView',
+  components: {
+    Card
+  }
 })
 export class DashboardView extends Vue {
-  public goToEditor (): void {
-    this.$router.push({ name: 'content.editor' })
-  }
+  public title = 'TTTTTT'
+  public count = [
+    {
+      title: 'Test',
+      text: 'tetete'
+    },
+    {
+      title: 'Test',
+      text: 'tetete'
+    },
+    {
+      title: 'Test',
+      text: 'tetete'
+    }
+  ]
 }
 export default DashboardView
 </script>

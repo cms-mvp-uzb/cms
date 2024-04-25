@@ -1,7 +1,11 @@
+import { AnalyticsModule } from '../modules/analytics'
+import { AuthModule } from '../modules/auth'
 import { ContentModule } from '../modules/content'
 import { DashboardModule } from '../modules/dashboard'
 import { RootModule } from '../modules/root'
-import { AuthModule } from '../modules/auth'
+import { SettingsModule } from "../modules/settings"
+import { IntegrationsModule } from "../modules/integrations"
+import { EcommerceModule } from "../modules/ecommerce"
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -9,6 +13,10 @@ import { AuthModule } from '../modules/auth'
 export const modules = [
   RootModule,
   AuthModule,
+  AnalyticsModule,
+  ContentModule,
+  EcommerceModule,
   DashboardModule,
-  ContentModule
+  IntegrationsModule,
+  SettingsModule
 ]

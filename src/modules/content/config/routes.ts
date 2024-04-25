@@ -1,5 +1,5 @@
 import {RouteConfig} from 'vue-router'
-import { defineAsyncComponent, defineComponent } from 'vue'
+import { defineAsyncComponent } from 'vue'
 import { AllowedTemplates } from '@/shared/contracts/templates'
 
 /**
@@ -7,7 +7,8 @@ import { AllowedTemplates } from '@/shared/contracts/templates'
  */
 export const enum RouteName {
   Editor = 'editor',
-  Pages = 'pages'
+  Pages = 'pages',
+  Preview = 'preview',
 }
 
 /**
@@ -15,9 +16,14 @@ export const enum RouteName {
  */
 export const routes: Array<RouteConfig> = [
   {
-    path: '/editor',
+    path: '/editor/:id?',
     name: RouteName.Editor,
     component: defineAsyncComponent(() => import('../views/EditorView.vue' as unknown as string))
+  },
+  {
+    path: '/preview/:id',
+    name: RouteName.Preview,
+    component: defineAsyncComponent(() => import('../views/Preview.vue' as unknown as string))
   },
   {
     path: '/pages',
