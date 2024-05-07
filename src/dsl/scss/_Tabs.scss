@@ -1,0 +1,42 @@
+.Tabs {
+  width: 100%;
+
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    border-bottom: 1px solid #e5e5e5;
+
+    li {
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+
+      padding: .5rem 1rem;
+      font-size: 12px;
+      position: relative;
+      transition: color .3s ease;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        transform: translateY(2px);
+        height: 2px;
+        width: 100%;
+        background: $primary;
+        transition: transform .3s ease;
+      }
+
+      &.--isActive {
+        color: $primary;
+
+        &::before {
+          height: 2px;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}

@@ -12,4 +12,6 @@ export enum Icon {
   Settings = 'settings',
   Eye = 'eye',
   PlusCircle = 'plusCircle',
+  Save = 'save',
+  Open = 'open',
 }

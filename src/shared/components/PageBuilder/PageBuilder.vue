@@ -25,7 +25,15 @@
                       :containers.sync="containers"/>
           </div>
 
-          <BlockEditor :block="selectedBlock"/>
+          <div class="PageBuilder__workspace__right__editor">
+            <DTabs :tabs="tabs">
+              <template #default="{ activeTab }">
+                  <BlockEditor
+                    v-show="activeTab === tab.General"
+                    :block="selectedBlock" />
+              </template>
+            </DTabs>
+          </div>
         </div>
       </div>
     </div>
@@ -52,6 +60,7 @@ import {
 import { PageBuilderMode } from '@/constructor/src/builder/contracts'
 
 import { PageBuilderActionBar } from '../PageBuilderActionBar'
+import { tabs, Tab } from './PageBuilder.config'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -77,6 +86,8 @@ export class PageBuilder extends Vue {
   public visible = true
 
   public readonly mode = PageBuilderMode
+  public readonly tab = Tab
+  public readonly tabs = tabs
 
   public activeMode: PageBuilderMode = PageBuilderMode.Edit
 

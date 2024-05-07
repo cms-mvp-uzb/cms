@@ -1,18 +1,12 @@
 <template>
   <div class="PageBuilder__actionBar">
-    <div>
-      <DIconButton iconName="eye" @click="changeMode" />
-    </div>
+    <button @click="onPreview">
+      <DIcon name="open" />
+    </button>
 
-    <DIconButton iconName="settings" />
-
-    <DButton @click="onPreview">
-      Preview
-    </DButton>
-
-    <DButton @click="onSave">
-      Save
-    </DButton>
+    <button @click="onSave">
+      <DIcon name="save" />
+    </button>
   </div>
 </template>
 

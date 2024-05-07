@@ -1,4 +1,4 @@
-$action-bar-height: 60px;
+$action-bar-height: 40px;
 
 .PageBuilder {
   &.--open {
@@ -49,14 +49,36 @@ $action-bar-height: 60px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    padding: 0 rem(24px);
-
     background-color: #fff;
-
     border-bottom: 1px solid #F3F4F5;
 
-    gap: rem(12px);
+    > button {
+      background: transparent;
+      border: none;
+      height: 100%;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: .3s ease;
+
+      &:first-of-type {
+        border-left: 1px solid #e5e5e5;
+      }
+      &:not(:last-of-type) {
+        border-right: 1px solid #e5e5e5;
+      }
+
+      &:hover {
+        background: #fafafa;
+        cursor: pointer;
+        color: $primary;
+
+        svg {
+          transform: scale(1.1);
+        }
+      }
+    }
   }
 
   &__workspace {
@@ -83,6 +105,11 @@ $action-bar-height: 60px;
 
       &__content {
         display: flex;
+      }
+
+      &__editor {
+        max-width: 20rem;
+        width: 100%;
       }
     }
   }

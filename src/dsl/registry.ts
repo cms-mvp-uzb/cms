@@ -6,6 +6,7 @@ import { IconButton } from './components/IconButton'
 import { Switch } from './components/Switch'
 import { Table } from './components/Table'
 import { Modal } from './components/Modal'
+import { Tabs } from './components/Tabs'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -18,5 +19,6 @@ export const componentsRegistry = {
   IconButton,
   Switch,
   Table,
-  Modal
+  Modal,
+  Tabs,
 }
