@@ -3,13 +3,13 @@
     <div class="Pages__actions">
       <DButton type="secondary" @click="openCreatePageModal">
         <template #prepend>
-          <DIcon name="plusCircle" />
+          <DIcon name="plusCircle"/>
         </template>
         Create
       </DButton>
     </div>
 
-    <DTable :headers="tableHeaders" :items="tableItems" @cell-clicked="onCellClicked">
+    <DTable :headers="tableHeaders" :items="tableItems">
       <template v-slot:cell-name="{ item }">
         <strong>{{ item.name }}</strong>
       </template>
@@ -17,17 +17,27 @@
       <template v-slot:cell-id="{ item }">
         <small>{{ item.id }}</small>
       </template>
+
+      <template v-slot:cell-actions="{ item }">
+        <DButton theme="danger" size="small">
+          Delete
+        </DButton>
+
+        <DButton theme="primary" size="small" @click="editPage(item)">
+          Edit
+        </DButton>
+      </template>
     </DTable>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { getFirestore, collection, getDocs, query } from 'firebase/firestore'
+import {Component, Vue} from 'vue-property-decorator'
+import {getFirestore, collection, getDocs, query} from 'firebase/firestore'
 
-import { TableItem } from '@/dsl/components/Table'
+import {TableItem} from '@/dsl/components/Table'
 import {Modal, RouteName} from "@/modules/content/config"
-import { ModalServiceType } from "@/toolkit/src/core/services/modal";
+import {ModalServiceType} from "@/toolkit/src/core/services/modal";
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -41,7 +51,7 @@ import { ModalServiceType } from "@/toolkit/src/core/services/modal";
 export class Pages extends Vue {
   protected readonly modalService = this.$container.get(ModalServiceType)
 
-  public tableHeaders: string[] = ['Title', 'Identifier']
+  public tableHeaders: string[] = ['Title', 'Identifier', 'Actions']
   public tableItems: TableItem[] = []
 
   public openCreatePageModal(): void {
@@ -62,18 +72,17 @@ export class Pages extends Vue {
     )
   }
 
-  public onCellClicked (payload: { item: TableItem; key: string }): void {
+  public editPage(payload: any): void {
+    console.log(payload)
     this.$router.push({
       name: `content.${RouteName.Editor}`,
       params: {
-        id: payload.item.id
+        id: payload.id
       }
     })
-
-    console.log('Cell clicked:', payload.item, payload.key)
   }
 
-  public async fetchPages (): Promise<void> {
+  public async fetchPages(): Promise<void> {
     try {
       const db = getFirestore()
       const _query = query(collection(db, 'pages'))
@@ -83,7 +92,8 @@ export class Pages extends Vue {
       this.tableItems = response.docs.map((doc) => {
         return {
           name: doc.data().meta.name,
-          id: doc.id
+          id: doc.id,
+          actions: ''
         }
       })
 

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div>
-      <Card v-for="(item, index) in count" :key="index" :title="item.title" :text="item.text" />
-    </div>
+    This is Dashboard
   </div>
 </template>
 
@@ -11,27 +9,8 @@ import { Component, Vue } from "vue-property-decorator";
 import { Card } from "@/components/Card.vue";
 
 @Component<DashboardView>({
-  name: 'DashboardView',
-  components: {
-    Card
-  }
+  name: 'DashboardView'
 })
-export class DashboardView extends Vue {
-  public title = 'TTTTTT'
-  public count = [
-    {
-      title: 'Test',
-      text: 'tetete'
-    },
-    {
-      title: 'Test',
-      text: 'tetete'
-    },
-    {
-      title: 'Test',
-      text: 'tetete'
-    }
-  ]
-}
+export class DashboardView extends Vue {}
 export default DashboardView
 </script>

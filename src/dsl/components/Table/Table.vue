@@ -23,7 +23,7 @@
       <td v-if="selectable" class="selectable">
         <input type="checkbox" v-model="selectedRows[index]">
       </td>
-      <td v-for="(value, key) in item" :key="key" @click="cellClicked(item, key)">
+      <td v-for="(value, key) in item" :key="key" class="DTable__cell" @click="(e) => cellClicked(e, item, key)">
         <slot :name="'cell-' + key" v-bind="{ item }">{{ value }}</slot>
       </td>
     </tr>
@@ -70,7 +70,8 @@ export class Table extends Vue {
     })
   }
 
-  public cellClicked (item: TableItem, key: string): void {
+  public cellClicked (e: MouseEvent, item: TableItem, key: string): void {
+    e.stopPropagation()
     this.$emit('cell-clicked', { item, key })
   }
 

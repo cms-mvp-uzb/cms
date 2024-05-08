@@ -1,6 +1,6 @@
 <template>
   <div>
-     <DButton @click="goToEditor">Go To Editor</DButton>
+    Ecommerce
   </div>
 </template>
 

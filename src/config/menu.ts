@@ -27,7 +27,7 @@ export const menu = [
     label: 'E-Commerce',
     key: 'products',
     icon: 'products',
-    route: 'products.products',
+    route: 'ecommerce.ecommerce',
     children: []
   },
   {

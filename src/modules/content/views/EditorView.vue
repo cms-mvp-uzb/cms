@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="EditorView">
      <PageBuilder
        v-if="blocks"
        :blockSet="blocks.elements"
@@ -11,9 +11,7 @@
        @preview="onPreview"
      />
 
-    <div v-else>
-      Loading
-    </div>
+    <DLoader v-else />
   </div>
 </template>
 

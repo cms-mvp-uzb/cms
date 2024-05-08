@@ -26,10 +26,23 @@
 
   th {
     padding: rem(12px);
+    width: 100%;
   }
 
   td {
     padding: rem(14px) rem(12px);
+  }
+
+  tr {
+    display: flex;
+    width: 100%;
+  }
+
+  td.DTable__cell {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
   }
 
   thead {

@@ -1,6 +1,8 @@
 $action-bar-height: 40px;
 
 .PageBuilder {
+  width: 100%;
+
   &.--open {
     grid-template-columns: 290px 1fr;
 

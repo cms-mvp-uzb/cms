@@ -7,6 +7,7 @@ import { Switch } from './components/Switch'
 import { Table } from './components/Table'
 import { Modal } from './components/Modal'
 import { Tabs } from './components/Tabs'
+import { Loader } from './components/Loader'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -21,4 +22,5 @@ export const componentsRegistry = {
   Table,
   Modal,
   Tabs,
+  Loader,
 }
