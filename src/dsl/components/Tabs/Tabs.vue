@@ -19,11 +19,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator"
 import { Tabs as TabsDef } from './Tabs.contracts'
-import {tabs} from "@/shared/components/PageBuilder/PageBuilder.config";
 
 @Component({ name: 'Tabs' })
 export class Tabs extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({ type: Object, required: true })
   public readonly tabs!: TabsDef
 
   public get activeTab (): string {

@@ -21,6 +21,7 @@
                          :containers.sync="containers"/>
 
             <Renderer v-show="activeMode === mode.View"
+                      :uiRegistry="uiRegistry"
                       :blocks.sync="blocks"
                       :containers.sync="containers"/>
           </div>
@@ -29,6 +30,7 @@
             <DTabs :tabs="tabs">
               <template #default="{ activeTab }">
                   <BlockEditor
+                    :formRegistry="formsRegistry"
                     v-show="activeTab === tab.General"
                     :block="selectedBlock" />
               </template>
@@ -45,7 +47,7 @@ import {Component, Prop, Vue, Watch} from 'vue-property-decorator'
 
 import {
   availableContainers,
-  availableElements,
+  availableElements, blocksFormRegistry, blocksUiRegistry,
   PossibleContainer,
   PossibleElements
 } from '@/constructor/src/builder/defaults'
@@ -61,6 +63,8 @@ import { PageBuilderMode } from '@/constructor/src/builder/contracts'
 
 import { PageBuilderActionBar } from '../PageBuilderActionBar'
 import { tabs, Tab } from './PageBuilder.config'
+import {customBlocks} from "@/blocks";
+import {VueConstructor} from "vue";
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -80,6 +84,15 @@ export class PageBuilder extends Vue {
 
   @Prop({ type: Array, required: true })
   public containerSet!: IBlock[]
+
+  @Prop({ type: Object, required: false, default: () => ({}) })
+  public customBlocks!: BlockShelfItemsRegistry
+
+  @Prop({ type: Object, required: false, default: () => ({}) })
+  public customForms!: Record<PossibleElements, VueConstructor>
+
+  @Prop({ type: Object, required: false, default: () => ({}) })
+  public customUserInterfaces!: Record<PossibleElements, VueConstructor>
 
   public blocks: IBlock[] = []
   public containers: IBlock[] = []
@@ -106,13 +119,28 @@ export class PageBuilder extends Vue {
    */
   public get blockCollection(): BlockShelfItemsRegistry<PossibleElements> {
     return {
-      ...availableElements
+      ...availableElements,
+      ...this.customBlocks
     }
   }
 
   public get containersCollection(): BlockShelfItemsRegistry<PossibleContainer> {
     return {
       ...availableContainers
+    }
+  }
+
+  public get formsRegistry (): Record<PossibleElements, VueConstructor> {
+    return {
+      ...blocksFormRegistry,
+      ...this.customForms
+    }
+  }
+
+  public get uiRegistry (): Record<PossibleElements, VueConstructor> {
+    return {
+      ...blocksUiRegistry,
+      ...this.customUserInterfaces
     }
   }
 

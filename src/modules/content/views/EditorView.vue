@@ -4,6 +4,9 @@
        v-if="blocks"
        :blockSet="blocks.elements"
        :containerSet="blocks.containers"
+       :customBlocks="customBlocks"
+       :customForms="customForms"
+       :customUserInterfaces="customUis"
        @save="onSave"
        @preview="onPreview"
      />
@@ -20,8 +23,10 @@ import { getFirestore, updateDoc, doc, getDoc } from 'firebase/firestore'
 
 import { AnyObject } from "@/toolkit/src/core/general"
 
+import { customBlocks, customForms, customUis } from "@/blocks"
+
 import { PageBuilder } from '@/shared/components/PageBuilder'
-import {RouteName} from "@/modules/content/config";
+import { RouteName } from "@/modules/content/config"
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -38,6 +43,10 @@ export class EditorView extends Vue {
     elements: [],
     containers: []
   } | null = null
+
+  public readonly customBlocks = customBlocks
+  public readonly customForms = customForms
+  public readonly customUis = customUis
 
   public async onSave ({ elements, containers }: AnyObject): Promise<void> {
     const db = getFirestore();
