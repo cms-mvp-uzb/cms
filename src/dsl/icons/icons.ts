@@ -14,4 +14,5 @@ export enum Icon {
   PlusCircle = 'plusCircle',
   Save = 'save',
   Open = 'open',
+  Copy = 'copy',
 }

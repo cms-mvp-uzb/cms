@@ -63,6 +63,8 @@ $action-bar-height: 40px;
       justify-content: center;
       align-items: center;
       transition: .3s ease;
+      font-size: 11px;
+      gap: .3rem;
 
       &:first-of-type {
         border-left: 1px solid #e5e5e5;

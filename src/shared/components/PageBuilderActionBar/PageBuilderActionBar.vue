@@ -2,10 +2,11 @@
   <div class="PageBuilder__actionBar">
     <button @click="onPreview">
       <DIcon name="open" />
+      Preview
     </button>
-
     <button @click="onSave">
       <DIcon name="save" />
+      Save
     </button>
   </div>
 </template>

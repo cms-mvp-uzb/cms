@@ -20,4 +20,5 @@ export const iconsRegistry: Record<Icon, AsyncComponent> = {
   [Icon.PlusCircle]: defineAsyncComponent(() => import('./PlusCircle.vue' as string)),
   [Icon.Save]: defineAsyncComponent(() => import('./Save.vue' as string)),
   [Icon.Open]: defineAsyncComponent(() => import('./Open.vue' as string)),
+  [Icon.Copy]: defineAsyncComponent(() => import('./Copy.vue' as string)),
 }
