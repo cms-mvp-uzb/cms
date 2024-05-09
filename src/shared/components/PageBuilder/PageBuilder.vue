@@ -18,6 +18,7 @@
           <div class="PageBuilder__workspace__area">
             <Constructor v-show="activeMode === mode.Edit"
                          :blocks.sync="blocks"
+                         :uiRegistry="uiRegistry"
                          :containers.sync="containers"/>
 
             <Renderer v-show="activeMode === mode.View"

@@ -1,6 +1,6 @@
 <template>
   <div>
-     <DButton @click="goToEditor">Go To Editor</DButton>
+     <DButton @click="goToEditor">Create Layout</DButton>
   </div>
 </template>
 

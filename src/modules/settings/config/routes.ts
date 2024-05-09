@@ -19,5 +19,10 @@ export const routes: Array<RouteConfig> = [
     name: RouteName.Settings,
     component: defineAsyncComponent(() => import('../views/Analytics.vue' as unknown as string)),
     meta: { template: AllowedTemplates.Sidebar }
+  },
+  {
+    path: '/settings/layouts', // Let's consider Dashboard view as a root.
+    name: RouteName.Settings,
+    component: defineAsyncComponent(() => import('../views/Analytics.vue' as unknown as string)),
   }
 ]
