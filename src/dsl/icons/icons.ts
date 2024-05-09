@@ -3,6 +3,7 @@
  */
 export enum Icon {
   Analytics = 'analytics',
+  Arrow = 'arrow',
   Cube3D = 'cube3D',
   Dashboard = 'dashboard',
   Desktop = 'desktop',

@@ -20,7 +20,7 @@ $action-bar-height: 40px;
   }
 
   .Shelf {
-    padding: 0 20px 0 20px;
+    padding: 0;
     border-right: 1px solid #F3F4F5;
     transform: translateX(calc(-100% + 20px));
 
@@ -69,6 +69,7 @@ $action-bar-height: 40px;
       &:first-of-type {
         border-left: 1px solid #e5e5e5;
       }
+
       &:not(:last-of-type) {
         border-right: 1px solid #e5e5e5;
       }

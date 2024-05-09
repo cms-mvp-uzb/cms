@@ -1,39 +1,40 @@
 <template>
-  <div class="PageBuilder" :class="{ '--open': visible }">
+  <div :class="{ '--open': visible }" class="PageBuilder">
     <div class="PageBuilder__workspace">
       <BlockShelf
         :containersRegistry="containersCollection"
         :itemsRegistry="blockCollection"
+        @goBack="goBack"
         @visible="toggleVisibility"
       />
 
       <div class="PageBuilder__workspace__right__container">
         <PageBuilderActionBar
           @changeMode="handleChangeMode"
-          @save="handleOnSave"
           @preview="handlePreview"
+          @save="handleOnSave"
         />
 
         <div class="PageBuilder__workspace__right__content">
           <div class="PageBuilder__workspace__area">
             <Constructor v-show="activeMode === mode.Edit"
                          :blocks.sync="blocks"
-                         :uiRegistry="uiRegistry"
-                         :containers.sync="containers"/>
+                         :containers.sync="containers"
+                         :uiRegistry="uiRegistry"/>
 
             <Renderer v-show="activeMode === mode.View"
-                      :uiRegistry="uiRegistry"
                       :blocks.sync="blocks"
-                      :containers.sync="containers"/>
+                      :containers.sync="containers"
+                      :uiRegistry="uiRegistry"/>
           </div>
 
           <div class="PageBuilder__workspace__right__editor">
             <DTabs :tabs="tabs">
               <template #default="{ activeTab }">
-                  <BlockEditor
-                    :formRegistry="formsRegistry"
-                    v-show="activeTab === tab.General"
-                    :block="selectedBlock" />
+                <BlockEditor
+                  v-show="activeTab === tab.General"
+                  :block="selectedBlock"
+                  :formRegistry="formsRegistry"/>
               </template>
             </DTabs>
           </div>
@@ -48,7 +49,9 @@ import {Component, Prop, Vue, Watch} from 'vue-property-decorator'
 
 import {
   availableContainers,
-  availableElements, blocksFormRegistry, blocksUiRegistry,
+  availableElements,
+  blocksFormRegistry,
+  blocksUiRegistry,
   PossibleContainer,
   PossibleElements
 } from '@/constructor/src/builder/defaults'
@@ -60,11 +63,10 @@ import {
   IBlock,
   Renderer
 } from '@/constructor/src/builder/modules'
-import { PageBuilderMode } from '@/constructor/src/builder/contracts'
+import {PageBuilderMode} from '@/constructor/src/builder/contracts'
 
-import { PageBuilderActionBar } from '../PageBuilderActionBar'
-import { tabs, Tab } from './PageBuilder.config'
-import {customBlocks} from "@/blocks";
+import {PageBuilderActionBar} from '../PageBuilderActionBar'
+import {Tab, tabs} from './PageBuilder.config'
 import {VueConstructor} from "vue";
 
 /**
@@ -72,7 +74,7 @@ import {VueConstructor} from "vue";
  */
 @Component<PageBuilder>({
   name: 'PageBuilder',
-  components: { Renderer, Constructor, BlockEditor, BlockShelf, PageBuilderActionBar },
+  components: {Renderer, Constructor, BlockEditor, BlockShelf, PageBuilderActionBar},
   mounted(): void {
     this.buildContainers()
     this.buildBlocks()
@@ -80,19 +82,19 @@ import {VueConstructor} from "vue";
   }
 })
 export class PageBuilder extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({type: Array, required: true})
   public blockSet!: IBlock[]
 
-  @Prop({ type: Array, required: true })
+  @Prop({type: Array, required: true})
   public containerSet!: IBlock[]
 
-  @Prop({ type: Object, required: false, default: () => ({}) })
+  @Prop({type: Object, required: false, default: () => ({})})
   public customBlocks!: BlockShelfItemsRegistry
 
-  @Prop({ type: Object, required: false, default: () => ({}) })
+  @Prop({type: Object, required: false, default: () => ({})})
   public customForms!: Record<PossibleElements, VueConstructor>
 
-  @Prop({ type: Object, required: false, default: () => ({}) })
+  @Prop({type: Object, required: false, default: () => ({})})
   public customUserInterfaces!: Record<PossibleElements, VueConstructor>
 
   public blocks: IBlock[] = []
@@ -131,14 +133,14 @@ export class PageBuilder extends Vue {
     }
   }
 
-  public get formsRegistry (): Record<PossibleElements, VueConstructor> {
+  public get formsRegistry(): Record<PossibleElements, VueConstructor> {
     return {
       ...blocksFormRegistry,
       ...this.customForms
     }
   }
 
-  public get uiRegistry (): Record<PossibleElements, VueConstructor> {
+  public get uiRegistry(): Record<PossibleElements, VueConstructor> {
     return {
       ...blocksUiRegistry,
       ...this.customUserInterfaces
@@ -163,8 +165,12 @@ export class PageBuilder extends Vue {
     return this.allBlocks.find((block: IBlock) => block.selected)
   }
 
-  public toggleVisibility (): void {
+  public toggleVisibility(): void {
     this.visible = !this.visible
+  }
+
+  public goBack(): void {
+    this.$router.go(-1)
   }
 
   public handleChangeMode(): void {
@@ -185,7 +191,7 @@ export class PageBuilder extends Vue {
     })
   }
 
-  public handlePreview (): void {
+  public handlePreview(): void {
     this.$emit('preview')
   }
 
@@ -193,12 +199,12 @@ export class PageBuilder extends Vue {
    * Sets all selected option as false for all existing containers/blocks.
    */
   public setDefaultSelection(): void {
-    this.blocks = [...this.blocks ].map(block => ({
+    this.blocks = [...this.blocks].map(block => ({
       ...block,
       selected: false
     }))
 
-    this.containers = [ ...this.containers ].map(container => ({
+    this.containers = [...this.containers].map(container => ({
       ...container,
       selected: false
     }))
