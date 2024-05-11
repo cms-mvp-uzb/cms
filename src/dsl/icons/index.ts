@@ -7,7 +7,7 @@ export * from './icons'
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
 export const iconsRegistry: Record<Icon, AsyncComponent> = {
-  [Icon.Analytics]: defineAsyncComponent(() => import('./Analytics.vue' as string)),
+  [Icon.Analytics]: defineAsyncComponent(() => import('./Settings.vue' as string)),
   [Icon.Arrow]: defineAsyncComponent(() => import('./Arrow.vue' as string)),
   [Icon.Cube3D]: defineAsyncComponent(() => import('./Cube3D.vue' as string)),
   [Icon.Dashboard]: defineAsyncComponent(() => import('./Dashboard.vue' as string)),
