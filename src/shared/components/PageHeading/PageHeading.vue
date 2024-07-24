@@ -1,8 +1,8 @@
 <template>
   <div class="PageHeading">
-    <div class="PageHeading__label">
+    <div class="PageHeading__label_wrapper">
       <slot name="label">
-        <h2>{{ label }}</h2>
+        <h2 class="PageHeading__label">{{ label }}</h2>
       </slot>
 
       <div class="PageHeading__label__actions">

@@ -3,9 +3,7 @@
     <div class="Modal">
       <div class="Modal__header">
         <slot name="header" />
-        <button @click="close">
-          X
-        </button>
+        <button @click="close" />
       </div>
 
       <div class="Modal__body">

@@ -2,12 +2,15 @@
   padding: rem(16px);
 
   &__label {
-    display: flex;
-    justify-content: space-between;
+    &_wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: rem(20px);
+      margin-top: rem(20px);
+    }
 
-    font-size: rem(22px);
-    margin-bottom: rem(20px);
-
+    font-size: rem(30px);
+    font-weight: 500;
     color: $secondary-color;
   }
 

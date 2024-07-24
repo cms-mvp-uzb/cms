@@ -4,7 +4,8 @@ export enum Tab {
   General = 'general',
   Profile = 'profile',
   Layouts = 'layouts',
-  Notifications = 'notifications'
+  Notifications = 'notifications',
+  Navigation = 'navigation'
 }
 
 export const tabs = {
@@ -26,6 +27,11 @@ export const tabs = {
   [Tab.Notifications]: {
     name: Tab.Notifications,
     title: 'Уведомления',
+    isActive: false,
+  },
+  [Tab.Navigation]: {
+    name: Tab.Navigation,
+    title: 'Навигация',
     isActive: false,
   }
 }

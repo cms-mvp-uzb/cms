@@ -32,10 +32,35 @@
     justify-content: space-between;
 
     button {
-      background: transparent;
-      border: none;
       cursor: pointer;
-      color: #606060;;
+      position: relative;
+      width: 20px;
+      display: flex;
+      align-items: center;
+      background: none;
+      border: 0;
+
+      &::before {
+        content: '';
+        height: 2px;
+        width: 16px;
+        position: absolute;
+        background-color: $secondary;
+        border-radius: 2px;
+        transform: rotate(45deg);
+        transition: all .3s ease-in;
+      }
+
+      &::after {
+        content: '';
+        height: 2px;
+        width: 16px;
+        position: absolute;
+        background-color: $secondary;
+        border-radius: 2px;
+        transform: rotate(-45deg);
+        transition: all .3s ease-in;
+      }
     }
   }
 
