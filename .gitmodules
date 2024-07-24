@@ -1,6 +1,6 @@
 [submodule "src/constructor"]
 	path = src/constructor
-	url = git@github.com:mpjksoft/constructor.git
+	url = git@github.com:cms-mvp-uzb/constructor.git
 [submodule "src/toolkit"]
 	path = src/toolkit
-	url = git@github.com:mpjksoft/front-toolkit.git
+	url = git@github.com:cms-mvp-uzb/toolkit.git
