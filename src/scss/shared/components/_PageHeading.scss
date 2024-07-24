@@ -1,0 +1,17 @@
+.PageHeading {
+  padding: rem(16px);
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: rem(22px);
+    margin-bottom: rem(20px);
+
+    color: $secondary-color;
+  }
+
+  &__content {
+    //
+  }
+}

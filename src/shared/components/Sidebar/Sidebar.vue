@@ -1,6 +1,9 @@
 <template>
   <div class="Sidebar">
-    <Menu :menuItems="items" />
+    <div class="Sidebar__top">
+      <img class="Sidebar__logo" src="https://logowik.com/content/uploads/images/cms6630.logowik.com.webp" alt="logo">
+      <Menu :menuItems="items" />
+    </div>
 
     <DButton theme="outline" @click="logout">Log Out</DButton>
   </div>

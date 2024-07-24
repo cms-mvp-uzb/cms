@@ -8,4 +8,13 @@
   padding: rem(12px) rem(24px);
 
   border-right: 1px solid $grey-100;
+
+  &__top {
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__logo {
+
+  }
 }

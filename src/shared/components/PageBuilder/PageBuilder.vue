@@ -74,7 +74,7 @@ import {VueConstructor} from "vue";
  */
 @Component<PageBuilder>({
   name: 'PageBuilder',
-  components: {Renderer, Constructor, BlockEditor, BlockShelf, PageBuilderActionBar},
+  components: { Renderer, Constructor, BlockEditor, BlockShelf, PageBuilderActionBar },
   mounted(): void {
     this.buildContainers()
     this.buildBlocks()

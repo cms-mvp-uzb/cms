@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <h2 class="settings__heading">Settings</h2>
+    <h2 class="settings__heading">Настройки</h2>
 
     <div class="settings__tabs">
       <DTabs :tabs="tabs">

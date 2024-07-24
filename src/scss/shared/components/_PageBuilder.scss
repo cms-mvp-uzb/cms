@@ -8,6 +8,15 @@ $action-bar-height: 40px;
 
     .Shelf {
       transform: translateX(0);
+
+      &__elements {
+        padding: 0 20px;
+        visibility: visible;
+      }
+
+      &__logo {
+        visibility: visible;
+      }
     }
 
     .PageBuilder__workspace {
@@ -34,9 +43,11 @@ $action-bar-height: 40px;
       color: $primary-color;
       border-bottom: 1px solid #F3F4F5;
       overflow: hidden;
+      visibility: hidden;
     }
 
     &__elements {
+      visibility: hidden;
       &-heading {
         font-size: 13px;
         font-weight: 400;

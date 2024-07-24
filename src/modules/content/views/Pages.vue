@@ -1,13 +1,13 @@
 <template>
-  <div class="Pages">
-    <div class="Pages__actions">
+  <PageHeading label="Мои страницы">
+    <template #actions>
       <DButton type="secondary" @click="openCreatePageModal">
         <template #prepend>
           <DIcon name="plusCircle"/>
         </template>
         Create
       </DButton>
-    </div>
+    </template>
 
     <DTable :headers="tableHeaders" :items="tableItems">
       <template v-slot:cell-name="{ item }">
@@ -28,7 +28,7 @@
         </DButton>
       </template>
     </DTable>
-  </div>
+  </PageHeading>
 </template>
 
 <script lang="ts">
@@ -38,12 +38,16 @@ import {getFirestore, collection, getDocs, query} from 'firebase/firestore'
 import {TableItem} from '@/dsl/components/Table'
 import {Modal, RouteName} from "@/modules/content/config"
 import {ModalServiceType} from "@/toolkit/src/core/services/modal";
+import { PageHeading } from "@/shared/components/PageHeading";
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
  */
 @Component<Pages>({
   name: 'Pages',
+  components: {
+    PageHeading
+  },
   mounted(): void {
     this.fetchPages()
   }

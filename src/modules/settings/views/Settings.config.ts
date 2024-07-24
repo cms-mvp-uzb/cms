@@ -10,22 +10,22 @@ export enum Tab {
 export const tabs = {
   [Tab.General]: {
     name: Tab.General,
-    title: 'General',
+    title: "Общие",
     isActive: true,
   },
   [Tab.Profile]: {
     name: Tab.Profile,
-    title: 'Profile',
+    title: "Профиль пользователя",
     isActive: false,
   },
   [Tab.Layouts]: {
     name: Tab.Layouts,
-    title: 'Layouts',
+    title: "Сетки",
     isActive: false,
   },
   [Tab.Notifications]: {
     name: Tab.Notifications,
-    title: 'Notifications',
+    title: 'Уведомления',
     isActive: false,
   }
 }
