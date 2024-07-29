@@ -5,11 +5,11 @@
         There will be header (logo, etc...)
       </div>
       <div class="AuthView__left__body">
-        <DDivider text="or sign in with" />
+        <DDivider text="or sign in with"/>
         <form @submit.prevent="submit">
-          <DInput :model.sync="formData.email" type="email" placeholder="E-mail" name="email" />
+          <DInput :model.sync="formData.email" type="email" placeholder="E-mail" name="email"/>
           <DInput :model.sync="formData.password" type="password" placeholder="Password"
-                  name="password" />
+                  name="password"/>
           <DButton type="submit">Login</DButton>
         </form>
       </div>
@@ -32,9 +32,11 @@ import { AnyObject } from '@/toolkit/src/core/general'
 
 import { AuthManagementServiceType, IAuthManagementService } from '@/shared/services/auth'
 
-@Component({ name: 'AuthView' })
+import { User } from '../contracts'
+
+@Component({name: 'AuthView'})
 export class AuthView extends Vue {
-  protected authManagementService: IAuthManagementService<{ name: string }> =
+  protected authManagementService: IAuthManagementService<User> =
     this.$container.get(AuthManagementServiceType)
 
   public formData: AnyObject = {
@@ -42,7 +44,7 @@ export class AuthView extends Vue {
     password: ''
   }
 
-  public submit (): void {
+  public submit(): void {
     this.authManagementService.setToken('example-token')
   }
 }
