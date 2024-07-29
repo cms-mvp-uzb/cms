@@ -8,3 +8,5 @@ export interface LoginData {
 export interface ILogin {
   login(payload: LoginData): Promise<User>
 }
+
+export const LoginServiceType = Symbol.for('ILogin')

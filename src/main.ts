@@ -21,8 +21,6 @@ Vue.use(DashboardDSL, { prefix: 'D' })
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-
 createApp().then(({ container, store, router }) => {
   new Vue({
     router,

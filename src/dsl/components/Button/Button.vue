@@ -2,11 +2,17 @@
   <button
     class="btn"
     v-bind="{ type }"
-    :class="[resolvedThemeClass, withPrependClass, resolvedSizeClass]"
+    :class="[resolvedThemeClass, withPrependClass, resolvedSizeClass, disabledClass]"
     @click="onClick"
   >
-    <slot name="prepend" class="btn-icon" />
-    <slot />
+    <template v-if="!loading">
+      <slot name="prepend" class="btn-icon" />
+      <slot />
+    </template>
+
+    <template v-else>
+      <span class="spinner"></span>
+    </template>
   </button>
 </template>
 
@@ -30,6 +36,12 @@ export class Button extends Vue {
   @Prop({ type: String, required: false, default: Size.Default })
   public readonly size!: Size
 
+  @Prop({ type: Boolean, required: false, default: false })
+  public readonly disabled!: boolean
+
+  @Prop({ type: Boolean, required: false, default: false })
+  public readonly loading!: boolean
+
   public get resolvedThemeClass (): string {
     return resolveTheme(this.theme)
   }
@@ -40,6 +52,10 @@ export class Button extends Vue {
 
   public get withPrependClass (): string {
     return this.$slots.prepend ? '--prepended' : ''
+  }
+
+  public get disabledClass (): string {
+    return this.disabled ? '--disabled' : ''
   }
 
   public onClick (): void {
