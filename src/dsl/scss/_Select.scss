@@ -1,0 +1,21 @@
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
+.Select {
+  &__label {
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+    margin: 10px 0;
+  }
+
+  .multiselect__option {
+    color: $black !important;
+    &--highlight {
+      background-color: $select-option-highlight;
+    }
+
+    &--selected {
+      background-color: $select-option-selected !important;
+    }
+  }
+}

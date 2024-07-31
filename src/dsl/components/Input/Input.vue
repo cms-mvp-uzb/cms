@@ -1,8 +1,9 @@
 <template>
   <div class="Input">
-    <label for="name">{{ label }}</label>
-    <input v-model="_model" :name="name" :placeholder="placeholder" :type="type"
+    <label class="Input__label" for="name">{{ label }} <span v-if="required">*</span></label>
+    <input v-model="_model" v-bind="{ type, name, placeholder, required, disabled }"
            class="Input__input">
+    <small v-if="footer" class="Input__footer">{{ footer }}</small>
   </div>
 </template>
 
@@ -17,6 +18,9 @@ export class Input extends Vue {
   @Prop({ type: String, required: false })
   public readonly label!: string
 
+  @Prop({ type: String, required: false })
+  public readonly footer!: string
+
   @Prop({ type: String, required: false, default: 'text' })
   public readonly type!: string
 
@@ -25,6 +29,12 @@ export class Input extends Vue {
 
   @Prop({ type: String, required: true })
   public readonly name!: string
+
+  @Prop({ type: Boolean, required: false, default: false })
+  public readonly required!: boolean
+
+  @Prop({ type: Boolean, required: false, default: false })
+  public readonly disabled!: boolean
 }
 
 export default Input

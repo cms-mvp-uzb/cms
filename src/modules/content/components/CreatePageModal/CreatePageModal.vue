@@ -1,37 +1,72 @@
 <template>
-  <DModal @close="close">
+  <DModal @close="close" size="medium">
     <template #header>
-      Create new page
+      Новая страница
     </template>
 
     <div>
-      <div class="CreatePageModal__form">
+      <form class="CreatePageModal__form" @submit.prevent="createPage">
         <DInput
-          :model.sync="formData.name"
+          label="Титул"
+          footer="Название вашей новой страницы"
+          :model.sync="formData.title"
           type="text"
-          placeholder="name"
-          name="name"
+          name="title"
+          required
         />
 
-        <DInput
-          :model.sync="formData.slug"
-          type="email"
-          placeholder="slug"
-          name="slug"
+        <DSelect
+          label="Выберите родителя"
+          :options="options"
+          :model.sync="formData.parent"
+          placeholder="Выбрать"
+          required
         />
 
-        <DButton theme="primary" :loading="isLoading" @click="createPage">
-          Create
-        </DButton>
-      </div>
+        <DSelect
+          label="Тип"
+          :model.sync="formData.type"
+          :options="pageTypeOptions"
+          placeholder="Выбрать"
+          required
+        />
+
+        <div class="CreatePageModal__form__footer">
+          <span class="CreatePageModal__form__footer__text">
+            URL: {{ base }}{{formData.slug }}
+          </span>
+
+          <div class="CreatePageModal__form__footer__actions">
+            <DButton
+              theme="danger"
+              variant="text"
+              @click="close"
+            >
+              Отменить
+            </DButton>
+
+            <DButton
+              theme="primary"
+              :loading="isLoading"
+              type="submit"
+            >
+              Создать
+            </DButton>
+          </div>
+        </div>
+      </form>
     </div>
   </DModal>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from "vue-property-decorator"
-import {addDoc, collection, getFirestore} from "firebase/firestore";
-import {AnyObject} from "@/toolkit/src/core/general";
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { addDoc, collection, getFirestore } from 'firebase/firestore'
+
+import { SelectOptions } from '@/dsl/components/Select'
+import { AnyObject } from '@/toolkit/src/core/general'
+
+import { PageData, PageType } from '../../contracts'
 
 @Component<CreatePageModal>({ name: 'CreatePageModal' })
 export class CreatePageModal extends Vue {
@@ -39,9 +74,33 @@ export class CreatePageModal extends Vue {
   protected readonly payload!: AnyObject
 
   public isLoading = false
-  public formData = {
-    name: '',
-    slug: ''
+  public formData: PageData = {
+    title: '',
+    slug: '',
+    type: null,
+    parent: null
+  }
+
+  public get base (): string {
+    return process.env.VUE_APP_BASE_URL
+  }
+
+  public get options (): SelectOptions {
+    return [
+      {
+        label: 'Homepage',
+        value: 'homepage'
+      }
+    ]
+  }
+
+  public get pageTypeOptions (): SelectOptions {
+    return Object.values(PageType).map(value => {
+      return {
+        label: value,
+        value
+      }
+    })
   }
 
   public close (): void {
@@ -68,6 +127,12 @@ export class CreatePageModal extends Vue {
       this.isLoading = false
     }
   }
+
+  @Watch('formData.title')
+  protected onFormData (value: string): void {
+    this.formData.slug = value.toLowerCase().replace(/ /g,"-")
+  }
 }
+
 export default CreatePageModal
 </script>

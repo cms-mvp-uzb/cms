@@ -2,16 +2,17 @@
   <button
     class="btn"
     v-bind="{ type }"
-    :class="[resolvedThemeClass, withPrependClass, resolvedSizeClass, disabledClass]"
+    :class="[resolvedThemeClass, withPrependClass, resolvedSizeClass, disabledClass, {
+      '--loading': loading
+    }]"
     @click="onClick"
   >
-    <template v-if="!loading">
-      <slot name="prepend" class="btn-icon" />
-      <slot />
-    </template>
-
-    <template v-else>
+    <template>
       <span class="spinner"></span>
+      <slot name="prepend" class="btn-icon" />
+      <span class="btn-text">
+         <slot />
+      </span>
     </template>
   </button>
 </template>

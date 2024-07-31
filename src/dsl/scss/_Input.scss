@@ -2,12 +2,20 @@
   display: flex;
   flex-flow: column;
 
-  label {
-    font-size: 12px;
-    margin: 0;
+  &__label {
+    font-size: 15px;
+    font-weight: 500;
     display: block;
-
+    margin: 10px 0;
   }
+
+  &__footer {
+    font-size: 12px;
+    display: block;
+    color: $input-footer-color;
+    margin: 2px;
+  }
+
   &__input {
     display: block;
     width: 100%;
@@ -29,6 +37,10 @@
 
     &::placeholder {
       color: $input-placeholder-color;
+    }
+
+    &:disabled {
+      opacity: .5;
     }
   }
 

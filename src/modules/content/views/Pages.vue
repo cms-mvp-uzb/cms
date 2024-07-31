@@ -95,7 +95,7 @@ export class Pages extends Vue {
 
       this.tableItems = response.docs.map((doc) => {
         return {
-          name: doc.data().meta.name,
+          name: doc.data().meta.name ?? doc.data().meta.title,
           id: doc.id,
           actions: ''
         }

@@ -8,6 +8,7 @@ import { Table } from './components/Table'
 import { Modal } from './components/Modal'
 import { Tabs } from './components/Tabs'
 import { Loader } from './components/Loader'
+import { Select } from './components/Select'
 
 /**
  * @author Javlon Khalimjonov <javlon.khalimjonov@movecloser.pl>
@@ -23,4 +24,5 @@ export const componentsRegistry = {
   Modal,
   Tabs,
   Loader,
+  Select,
 }
