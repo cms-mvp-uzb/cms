@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AuthView v-if="!isAuthenticated" />
+    <AuthView v-if="isAuthenticated" />
     <WithLayout v-else />
     <Modal />
   </div>
